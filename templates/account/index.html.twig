@@ -8,9 +8,9 @@
         <p>Bienvenue {{app.user.prenom}} dans votre compte</p>
     </div>
     <div class="list-group lead">
-        <a href="#" class="list-group-item list-group-item-action">Modifier le mot de passe</a>
-        <a href="#" class="list-group-item list-group-item-action">Mes emprunts</a>
-        <a href="#" class="list-group-item list-group-item-action">Mes commandes</a>
-        <a href="#" class="list-group-item list-group-item-action">Mon historique</a>
+        <a href="{{ path('account_password') }}" class="list-group-item list-group-item-action">Modifier le mot de passe</a>
+        <a href="#" class="list-group-item list-group-item-action mt-2">Mes emprunts</a>
+        <a href="#" class="list-group-item list-group-item-action mt-2">Mes commandes</a>
+        <a href="#" class="list-group-item list-group-item-action mt-2">Mon historique</a>
     </div>
 {% endblock %}

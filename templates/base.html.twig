@@ -39,27 +39,27 @@
         <div>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">La Chapelle-Curreaux</a>
+                    <a class="navbar-brand lead" href="{{ path('home') }}">La Chapelle-Curreaux</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mx-auto mb-2 mb-md-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                                <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Catalogue</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link">Activités</a>
+                                <a class="nav-link">Contact</a>
                             </li>
                         </ul>
 
                     </div>
                     {% if app.user %}
                         <div class="d-inline">
-                            <a href="{{ path('account') }}" class="btn btn-info btn-sm">Mon compte</a>
+                            <a href="{{ path('account') }}" class="btn btn-info btn-sm">Mon compte <small>({{ app.user.prenom }})</small></a>
                             <a href="{{ path('app_logout') }}" class="btn btn-warning btn-sm">Se déconnecter</a>
                         </div>
                     {% else %}
@@ -78,7 +78,10 @@
     {% endblock %}
 
     <footer class="mt-auto text-white-50">
-        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+            <p>
+            <small> &copy; 2021-2022 <br>
+               Mediathèque Chapelle-Curreaux
+            </small></p>
     </footer>
 </div>
 
