@@ -34,7 +34,7 @@
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
         <div>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -46,10 +46,10 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mx-auto mb-2 mb-md-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
+                                <a class="nav-link" aria-current="page" href="{{ path('home') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Catalogue</a>
+                                <a class="nav-link" href="{{ path('catalogue') }}">Catalogue</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link">Contact</a>

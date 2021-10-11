@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContenusRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,12 +29,12 @@ class Contenus
     private $auteur;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime", length=255)
      */
     private $date_parution;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -55,7 +56,7 @@ class Contenus
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $disponibilité;
+    private $disponibilite;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="item")
@@ -92,12 +93,12 @@ class Contenus
         return $this;
     }
 
-    public function getDateParution(): ?string
+    public function getDateParution(): ?DateTimeInterface
     {
         return $this->date_parution;
     }
 
-    public function setDateParution(string $date_parution): self
+    public function setDateParution(\DateTimeInterface $date_parution): self
     {
         $this->date_parution = $date_parution;
 
@@ -152,14 +153,14 @@ class Contenus
         return $this;
     }
 
-    public function getDisponibilité(): ?string
+    public function getDisponibilite(): ?string
     {
-        return $this->disponibilité;
+        return $this->disponibilite;
     }
 
-    public function setDisponibilité(string $disponibilité): self
+    public function setDisponibilite(string $disponibilite): self
     {
-        $this->disponibilité = $disponibilité;
+        $this->disponibilite = $disponibilite;
 
         return $this;
     }

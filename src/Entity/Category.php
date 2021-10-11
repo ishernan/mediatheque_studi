@@ -19,25 +19,12 @@ class Category
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $romans;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $bandesDessinees;
+     private $classification;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $AlbumsEnfants;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $documentaires;
 
     /**
      * @ORM\OneToMany(targetEntity=Contenus::class, mappedBy="category")
@@ -49,58 +36,30 @@ class Category
         $this->item = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->getClassification();
+
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRomans(): ?string
+    public function getClassification(): ?string
     {
-        return $this->romans;
+        return $this->classification;
     }
 
-    public function setRomans(string $romans): self
+    public function setClassification(string $classification): self
     {
-        $this->romans = $romans;
+        $this->classification = $classification;
 
         return $this;
     }
 
-    public function getBandesDessinees(): ?string
-    {
-        return $this->bandesDessinees;
-    }
 
-    public function setBandesDessinees(string $bandesDessinees): self
-    {
-        $this->bandesDessinees = $bandesDessinees;
-
-        return $this;
-    }
-
-    public function getAlbumsEnfants(): ?string
-    {
-        return $this->AlbumsEnfants;
-    }
-
-    public function setAlbumsEnfants(string $AlbumsEnfants): self
-    {
-        $this->AlbumsEnfants = $AlbumsEnfants;
-
-        return $this;
-    }
-
-    public function getDocumentaires(): ?string
-    {
-        return $this->documentaires;
-    }
-
-    public function setDocumentaires(string $documentaires): self
-    {
-        $this->documentaires = $documentaires;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Contenus[]
