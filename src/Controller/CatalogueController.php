@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CatalogueController extends AbstractController
 {
 
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
@@ -25,6 +25,22 @@ class CatalogueController extends AbstractController
 
         return $this->render('catalogue/index.html.twig', [
             'catalogue' => $catalogue
+        ]);
+    }
+
+    #[Route('/item/{slug}', name: 'item')]
+
+    public function items($slug): Response
+    {
+
+        $item = $this->entityManager->getRepository(Contenus::class)->findOneBy(['slug'=> $slug]);
+
+        if(!$item) {
+            return $this->redirectToRoute('catalogue');
+        }
+
+        return $this->render('catalogue/item.html.twig', [
+            'item' => $item
         ]);
     }
 }

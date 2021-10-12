@@ -1,26 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    <h1 class="pb-4 mb-5">Catalogue</h1>
-{% endblock %}
+{% block title %} Catalogue {% endblock %}
 
-{% block content %}
-    <div class="row mt-5">
-    {% for catalogue in catalogue %}
-        <div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/{{catalogue.image}}" class="card-img-top img-fluid" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-warning">{{catalogue.titre}}</h5>
-                    <p class="card-text text-warning">{{catalogue.auteur}}</p>
-                    <hr>
-                    <p class="card-text text-warning">{{catalogue.genre}}</p>
-                    <a href="#" class="btn btn-warning">Savoir plus</a>
+
+    {% block content %}
+        <div class="mt-5 mb-5">
+            <h1 class="mt-5">Catalogue</h1>
+        </div>
+
+    <div class="container-fluid">
+     <div class="row justify-content-between">
+
+        {% for catalogue in catalogue %}
+
+    <div class="card mb-3 full ombre" style="max-width: 440px;">
+        <div class="row g-0">
+
+            <div class="col-md-4">
+            <a href="{{ path('item', {'slug': catalogue.slug}) }}"><img src="/images/{{catalogue.image}}" class="img-fluid rounded-start" alt="..."></a>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body text-warning">
+                    <h5 class="card-title">{{catalogue.titre}}</h5>
+                    <p class="card-text">{{catalogue.auteur}}</p>
+                    <p class="card-text"><small class="text-muted">{{catalogue.genre}}</small></p>
                 </div>
             </div>
         </div>
-    {% endfor %}
     </div>
+        {% endfor %}
+
+
+     </div>
+    </div>
+
 
 {% endblock %}
 

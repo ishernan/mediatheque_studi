@@ -34,7 +34,7 @@ class ContenusCrudController extends AbstractCrudController
                 ->setUploadDir('public/images/')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            BooleanField::new('disponibilite'),
+            //BooleanField::new('disponibilite'),
             AssociationField::new('category')
 
         ];

@@ -53,10 +53,7 @@ class Contenus
      */
     private $image;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $disponibilite;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="item")
