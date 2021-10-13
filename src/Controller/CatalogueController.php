@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Classe\SearchItem;
 use App\Entity\Contenus;
+use App\Form\SearchItemType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,12 +22,24 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/catalogue', name: 'catalogue')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $catalogue = $this->entityManager->getRepository(Contenus::class)->findAll();
+
+        $search = new SearchItem();
+        $form =$this->createForm(SearchItemType::class, $search);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()&& $form->isValid()){
+            $search = $form->getData();
+            $catalogue = $this->entityManager->getRepository(Contenus::class)->rechercher($search);
+        } else {
+            $catalogue = $this->entityManager->getRepository(Contenus::class)->findAll();
+        }
 
         return $this->render('catalogue/index.html.twig', [
-            'catalogue' => $catalogue
+            'catalogue' => $catalogue,
+            'form' => $form->createView()
         ]);
     }
 

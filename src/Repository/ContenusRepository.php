@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classe\SearchItem;
 use App\Entity\Contenus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,6 +18,32 @@ class ContenusRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Contenus::class);
+    }
+
+    /**
+    * fonction pour chercher selon les categories en BD en fonction d'utilisateur. Meme methode plus bas.
+    * @return Contenus[]
+    */
+    public function rechercher (SearchItem $searchItem)
+    {
+        $query = $this
+            ->createQueryBuilder('cn')
+            ->select('c', 'cn')
+            ->join('cn.category', 'c');
+
+        if(!empty($searchItem->categories)){
+            $query = $query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $searchItem->categories);
+        }
+
+        if(!empty($searchItem->string)){
+            $query= $query
+                ->andWhere('cn.titre LIKE :string')
+                ->setParameter('string', "%{$searchItem->string}%" );
+        }
+
+        return $query->getQuery()->getResult();
     }
 
     // /**
