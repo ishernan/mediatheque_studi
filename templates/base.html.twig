@@ -33,59 +33,61 @@
     <link href="{{ asset('assets/css/mediatheque.css') }}" rel="stylesheet">
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-5">
+            <div>
+                <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand lead" href="{{ path('home') }}">La Chapelle-Curreaux</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="navbar-nav mx-auto mb-2 mb-md-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{{ path('home') }}">Accueil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('catalogue') }}">Catalogue</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">Contact</a>
+                                </li>
+                            </ul>
 
-<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-        <div>
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand lead" href="{{ path('home') }}">La Chapelle-Curreaux</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav mx-auto mb-2 mb-md-0">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ path('home') }}">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('catalogue') }}">Catalogue</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Contact</a>
-                            </li>
-                        </ul>
+                        </div>
+                        {% if app.user %}
+                            <div class="d-inline">
+                                <a href="{{ path('account') }}" class="btn btn-info btn-sm">Mon compte <small>({{ app.user.prenom }})</small></a>
+                                <a href="{{ path('app_logout') }}" class="btn btn-warning btn-sm">Se déconnecter</a>
+                                <a href="{{ path('reservation') }}"><img src="/images/book.svg" class="ml-2  img-thumbnail" height="30px" alt="Mes reservations"></a>
+
+                            </div>
+                        {% else %}
+                            <div class="d-inline">
+                                <a href="{{ path('app_login') }}" class="btn btn-info btn-sm">Connexion</a>
+                                <a href="{{ path('register') }}" class="btn btn-warning btn-sm">Inscription</a>
+                            </div>
+                        {% endif %}
+
 
                     </div>
-                    {% if app.user %}
-                        <div class="d-inline">
-                            <a href="{{ path('account') }}" class="btn btn-info btn-sm">Mon compte <small>({{ app.user.prenom }})</small></a>
-                            <a href="{{ path('app_logout') }}" class="btn btn-warning btn-sm">Se déconnecter</a>
-                        </div>
-                    {% else %}
-                        <div class="d-inline">
-                            <a href="{{ path('app_login') }}" class="btn btn-info btn-sm">Connexion</a>
-                            <a href="{{ path('register') }}" class="btn btn-warning btn-sm">Inscription</a>
-                        </div>
-                    {% endif %}
+                </nav>
+            </div>
+        </header>
 
-                </div>
-            </nav>
-        </div>
-    </header>
+        {% block content %}
+        {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+        <footer class="text-white-50">
+                <p>
+                <small> &copy; 2021-2022 <br>
+                   Mediathèque Chapelle-Curreaux
+                </small></p>
+        </footer>
+    </div>
 
-    <footer class="mt-auto text-white-50">
-            <p>
-            <small> &copy; 2021-2022 <br>
-               Mediathèque Chapelle-Curreaux
-            </small></p>
-    </footer>
-</div>
-
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
 </body>
 </html>

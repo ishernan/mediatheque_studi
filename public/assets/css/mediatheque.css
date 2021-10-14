@@ -54,6 +54,9 @@ body {
     border-bottom-color: #fff;
 }
 
+
+
+
 /* catalogue
 
  */
@@ -78,4 +81,9 @@ body {
     box-shadow: 10px 10px 5px white;
     /* transition: all 1s ease-out; */
 
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
 }

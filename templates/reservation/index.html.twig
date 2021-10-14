@@ -1,20 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}Mes reservations{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container lead">
+        <div class="mt-5">
+            <h1>Mes reservations</h1>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Mes Projets_Code/Symfony/Mediatheque/src/Controller/ReservationController.php'|file_link(0) }}">src/Controller/ReservationController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Mes Projets_Code/Symfony/Mediatheque/templates/reservation/index.html.twig'|file_link(0) }}">templates/reservation/index.html.twig</a></code></li>
-    </ul>
-</div>
+        {% if reservation|length > 0 %}
+
+        <table class="table text-white">
+            <thead>
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Categorie</th>
+                <th scope="col">Illustration</th>
+                <th scope="col"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in  reservation %}
+
+            <tr>
+                <td>{{ item.items.titre }}</td>
+                <td>{{ item.items.auteur }}</td>
+                <td>{{ item.items.genre }}</td>
+                <td><img src="/images/{{ item.items.image }}" alt="" height="60px"></td>
+                <td ><a href="{{ path ('remove_item', {'id': item.items.id}) }}"><img src="/images/trash.svg" class="bg-light border border-white"  alt="eliminer"></a></td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-warning text-right">
+            <p class="">Nombre de reservations : {{ reservation|length }}</p>
+        </div>
+
+    </div>
+
+{% else  %}
+    <hr class="border-white">
+    <p class="lead">Vous n'avez aucun document reservé</p>
+{% endif%}
+
+
 {% endblock %}
