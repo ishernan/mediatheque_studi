@@ -22,20 +22,8 @@ class ReservationController extends AbstractController
     #[Route('/reservation', name: 'reservation')]
     public function index(DocsReservation $reservation): Response
     {
-       $emprunts  = [];
-
-       if ($reservation->get()){
-       foreach ($reservation->get() as $id => $quantity){
-        $emprunts[]= [
-            'items' => $this->entityManager->getRepository(Contenus::class)->findOneBy(['id'=>$id]),
-            'quantity'=> $quantity
-        ];
-
-       }
-
-    }
        return $this->render('reservation/index.html.twig', [
-           'reservation' => $emprunts
+           'reservation' => $reservation->getFull()
        ]);
     }
 
