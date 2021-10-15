@@ -39,13 +39,16 @@
 
         <div class="text-warning text-right">
             <p class="">Nombre de reservations : {{ reservation|length }}</p>
+            <a href="" class="btn btn-outline-warning">Confirmer reservations</a>
         </div>
+
 
     </div>
 
 {% else  %}
     <hr class="border-white">
     <p class="lead">Vous n'avez aucun document reservé</p>
+    <a href="{{ path('catalogue') }}"><p class="lead text-warning">Aller au catalogue ?</p></a>
 {% endif%}
 
 

@@ -55,7 +55,10 @@ class RegisterType extends AbstractType
                 'label' => 'Mot de passe'
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "S'inscrire"
+                'label' => "S'inscrire",
+                'attr' => [
+                    'class' => 'btn btn-outline-warning'
+                ]
             ])
         ;
     }

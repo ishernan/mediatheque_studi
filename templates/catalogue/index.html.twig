@@ -7,37 +7,37 @@
 
 
 
-        <div class=" container mt-5 mb-5">
-            <h1 class="mt-5 mb-3">Catalogue</h1>
-            <div class="">
-                {{ form(form) }}
-            </div>
+    <div class=" container mt-5 mb-5">
+        <h1 class="mt-5 mb-3">Catalogue</h1>
+        <div class="">
+            {{ form(form) }}
         </div>
+    </div>
 
     <div class="container-fluid">
-     <div class="row justify-content-between">
+        <div class="row justify-content-evenly">
 
         {% for catalogue in catalogue %}
 
-    <div class="card mb-3 full ombre" style="max-width: 440px;">
-        <div class="row g-0">
+        <div class="card mb-3 full ombre" style="max-width: 440px;">
+            <div class="row g-0">
 
-            <div class="col-md-4">
-            <a href="{{ path('item', {'slug': catalogue.slug}) }}"><img src="/images/{{catalogue.image}}" class="img-fluid rounded-start" alt="..."></a>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body text-warning">
-                    <h5 class="card-title">{{catalogue.titre}}</h5>
-                    <p class="card-text">{{catalogue.auteur}}</p>
-                    <p class="card-text"><small class="text-muted">{{catalogue.genre}}</small></p>
+                <div class="col-md-4">
+                <a href="{{ path('item', {'slug': catalogue.slug}) }}"><img src="/images/{{catalogue.image}}" class="img-fluid rounded-start" alt="..."></a>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body text-warning">
+                        <h5 class="card-title">{{catalogue.titre}}</h5>
+                        <p class="card-text">{{catalogue.auteur}}</p>
+                        <p class="card-text"><small class="text-muted">{{catalogue.genre}}</small></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
         {% endfor %}
 
 
-     </div>
+        </div>
     </div>
 
 

@@ -5,7 +5,7 @@
 {% block content %}
 <form method="post">
     {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="container alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
@@ -14,7 +14,7 @@
         </div>
     {% endif %}
 
-    <div class="container">
+    <div class="container mt-5">
         <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
         <label for="inputEmail">Email</label>
         <input type="email" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
@@ -39,5 +39,7 @@
     <button class="btn btn-warning mt-3" type="submit">
         Se connecter
     </button>
+    <hr class="border-white container">
+    <p class="text-center"><a href="{{ path('register') }}" class="text-white text-muted">Souhaitez-vous créer un compte ?</a></p>
 </form>
 {% endblock %}

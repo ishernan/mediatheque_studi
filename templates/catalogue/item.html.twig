@@ -14,6 +14,8 @@
                 <h2 class="">{{item.auteur}}</h2>
                 <h3 class=""><small class="text-muted">{{item.genre}}</small></h3>
                 <p>{{ item.description }}</p>
+{#                <p>{{ item.date_parution }}</p>#}
+
                 <a href="{{ path('add_reservation', {'id' : item.id}) }}" class="btn btn-outline-warning">Reserver</a>
 
             </div>

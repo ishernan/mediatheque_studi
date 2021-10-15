@@ -61,6 +61,11 @@ class Contenus
      */
     private $category;
 
+    /*public function __toString()
+    {
+        return $this->getDateParution();
+    }*/
+
     public function getId(): ?int
     {
         return $this->id;

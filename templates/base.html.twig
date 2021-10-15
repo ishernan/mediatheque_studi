@@ -32,11 +32,12 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/css/mediatheque.css') }}" rel="stylesheet">
 </head>
-<body class="d-flex h-100 text-center text-white bg-dark">
-    <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+<body class="d-flex h-100 w-100 text-center text-white bg-dark" marginheight="100%">
+    <div class="container-fluid d-flex  p-3 mx-auto flex-column">
         <header class="mb-5">
             <div>
-                <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <nav class="navbar navbar-expand-md navbar-dark fixed-top nav_bg">
                     <div class="container-fluid">
                         <a class="navbar-brand lead" href="{{ path('home') }}">La Chapelle-Curreaux</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,14 +59,14 @@
                         </div>
                         {% if app.user %}
                             <div class="d-inline">
-                                <a href="{{ path('account') }}" class="btn btn-info btn-sm">Mon compte <small>({{ app.user.prenom }})</small></a>
+                                <a href="{{ path('account') }}" class="btn btn-light btn-sm">Mon compte <small>({{ app.user.prenom }})</small></a>
                                 <a href="{{ path('app_logout') }}" class="btn btn-warning btn-sm">Se déconnecter</a>
                                 <a href="{{ path('reservation') }}"><img src="/images/book.svg" class="ml-2  img-thumbnail" height="30px" alt="Mes reservations"></a>
 
                             </div>
                         {% else %}
                             <div class="d-inline">
-                                <a href="{{ path('app_login') }}" class="btn btn-info btn-sm">Connexion</a>
+                                <a href="{{ path('app_login') }}" class="btn btn-dark btn-sm">Connexion</a>
                                 <a href="{{ path('register') }}" class="btn btn-warning btn-sm">Inscription</a>
                             </div>
                         {% endif %}
@@ -79,7 +80,7 @@
         {% block content %}
         {% endblock %}
 
-        <footer class="text-white-50">
+        <footer class="text-white-50 mt-auto">
                 <p>
                 <small> &copy; 2021-2022 <br>
                    Mediathèque Chapelle-Curreaux
