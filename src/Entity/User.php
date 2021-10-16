@@ -57,14 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $adresse;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Borrow::class, mappedBy="user")
-     */
-    private $borrows;
-
     public function __construct()
     {
-        $this->borrows = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -204,33 +199,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Borrow[]
-     */
-    public function getBorrows(): Collection
-    {
-        return $this->borrows;
-    }
 
-    public function addBorrow(Borrow $borrow): self
-    {
-        if (!$this->borrows->contains($borrow)) {
-            $this->borrows[] = $borrow;
-            $borrow->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBorrow(Borrow $borrow): self
-    {
-        if ($this->borrows->removeElement($borrow)) {
-            // set the owning side to null (unless already changed)
-            if ($borrow->getUser() === $this) {
-                $borrow->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }
