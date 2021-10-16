@@ -19,6 +19,19 @@ class ReservationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservations::class);
     }
 
+    public function findByUserId($id)
+    {
+        return $this->createQueryBuilder('r')
+            // Todo: hacer la union con la tabla contenus para recuperar los productos por el id_contenu
+            ->join('r.contenus', 'c')
+            ->andWhere('r.id_user = :val')
+            ->setParameter('val', $id)
+            ->orderBy('r.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Reservations[] Returns an array of Reservations objects
     //  */
@@ -36,15 +49,7 @@ class ReservationsRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Reservations
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
+
+
 }

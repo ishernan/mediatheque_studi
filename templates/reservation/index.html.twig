@@ -29,6 +29,7 @@
                 <td>{{ item.items.titre }}</td>
                 <td>{{ item.items.auteur }}</td>
                 <td>{{ item.items.genre }}</td>
+                <td>{{ item.items.reservation_date }}</td>
                 <td><img src="/images/{{ item.items.image }}" alt="" height="60px"></td>
                 <td ><a href="{{ path ('remove_item', {'id': item.items.id}) }}"><img src="/images/trash.svg" class="bg-light border border-white"  alt="eliminer"></a></td>
 
@@ -39,7 +40,6 @@
 
         <div class="text-warning text-right">
             <p class="">Nombre de reservations : {{ reservation|length }}</p>
-            <a href="{{ path('borrow') }}" class="btn btn-outline-warning">Details commande</a>
         </div>
 
 

@@ -19,6 +19,7 @@ class Reservations
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity=Contenus::class, mappedBy="reservations")
      */
     private $id_contenu;
 
@@ -42,7 +43,7 @@ class Reservations
         return $this->id;
     }
 
-    public function getIdContenu(): ?int
+    public function getIdContenus(): ?int
     {
         return $this->id_contenu;
     }

@@ -4,34 +4,62 @@ namespace App\Controller;
 
 use App\Classe\DocsReservation;
 use App\Entity\Contenus;
+use App\Entity\Reservations;
+use App\Repository\ContenusRepository;
+use App\Repository\IntervalRepository;
+use App\Repository\ReservationsRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 class ReservationController extends AbstractController
 {
 
-    private $entityManager;
+    private $em;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,
+        private ContenusRepository $contenusRepository,
+        private IntervalRepository $intervalRepository,
+    private ReservationsRepository $reservationsRepository
+    )
     {
-        $this->entityManager = $entityManager;
+        $this->em = $entityManager;
     }
 
     #[Route('/reservation', name: 'reservation')]
-    public function index(DocsReservation $reservation): Response
+    public function index(DocsReservation $reservation, UserInterface $user): Response
     {
+
+        $reservations = $this->reservationsRepository->findByUserId($user->getId());
+
        return $this->render('reservation/index.html.twig', [
-           'reservation' => $reservation->getFull()
+           'reservation' => $reservations
        ]);
     }
 
 
     #[Route('/reservation/add/{id}', name: 'add_reservation')]
-    public function add(DocsReservation $reservation, $id): Response
+    public function add(Contenus $id, UserInterface $user, UserRepository $userRepository): Response
     {
-        $reservation->add($id);
+        $contenu = $this->contenusRepository->find($id);
+        $reservation = new Reservations();
+        # recuperation de l'interval pour reservations
+        $interval= $this->intervalRepository->findOneBy(['type_interval' => 'reservation']);
+        # les dates
+        $now = new \DateTime('NOW');
+        $expiration = (new \DateTime('NOW'))->add(new \DateInterval($interval->getIntervalValue()));
+
+        $reservation
+            ->setIdUser($user->getId())
+            ->setIdContenu($contenu->getId())
+            ->setReservationDate($now)
+            ->setExpirationDate($expiration);
+        $this->em->persist($reservation);
+        $this->em->flush();
 
         return $this->redirectToRoute('reservation');
     }
